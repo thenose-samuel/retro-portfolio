@@ -1,0 +1,36 @@
+<html>
+  <script>
+    function dragMove(id) {
+      let element = document.getElementById("container");
+      element.style.position = "absolute";
+      element.onmousedown = function () {
+        drag = element;
+      };
+    }
+    document.onmouseup = function (e) {
+      drag = null;
+    };
+    document.onmousemove = function (e) {
+      var x = e.pageX;
+      var y = e.pageY;
+      console.log("x: " + x);
+      console.log("y: " + y);
+      drag.style.left = drag.offsetLeft - x + "px";
+      drag.style.top = drag.offsetTop - y + "px";
+    };
+  </script>
+  <style>
+    .ctr {
+      background-color: blue;
+      height: 10%;
+      width: 15%;
+      /* border-radius: 15px; */
+      text-align: center;
+      cursor: move;
+      box-shadow: 5px 5px 20px 0px rbga(0, 0, 0, 0.15);
+    }
+  </style>
+  <body onload="dragMove()">
+    <div id="container" class="ctr">move this</div>
+  </body>
+</html>
